@@ -39,13 +39,10 @@ Ordem crescente: `1, 3, 6, 8, 10, 14`
 
 ---
 
-##👥 Integrantes
+## 👥 Integrantes
+
 Marcela Torro — RM557658
-
 Matheus V. — RM555177
-
 Matheus Queiroz — RM558801
-
 Gustavo Attanazio — RM559098
-
 Rodrigo Leme — RM550266
