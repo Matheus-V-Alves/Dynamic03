@@ -1,5 +1,3 @@
-from collections import deque
-
 class Node:
     def __init__(self, valor):
         self.valor = valor
@@ -11,15 +9,15 @@ class BST:
         self.raiz = None
 
     def inserir(self, valor):
-        self.raiz = self.ins_recursivo(self.raiz, valor)
+        self.raiz = self._inserir_recursivo(self.raiz, valor)
 
-    def ins_recursivo(self, no, valor):
+    def _inserir_recursivo(self, no, valor):
         if no is None:
             return Node(valor)
         if valor < no.valor:
-            no.esquerda = self.ins_recursivo(no.esquerda, valor)
+            no.esquerda = self._inserir_recursivo(no.esquerda, valor)
         else:
-            no.direita = self.inse_recursivo(no.direita, valor)
+            no.direita = self._inserir_recursivo(no.direita, valor)
         return no
 
     def encontrar_k_esimo_menor(self, k):
@@ -38,40 +36,18 @@ class BST:
             return
         self._in_order(no.direita, k)
 
-    def print_com_ramos(self):
-        def altura(no):
-            if no is None:
-                return 0
-            return 1 + max(altura(no.esquerda), altura(no.direita))
-
-        def preencher(no, linha, col, matriz, espaco):
-            if no is None or linha >= len(matriz) or col < 0 or col >= len(matriz[0]):
-                return
-            matriz[linha][col] = str(no.valor)
-            if no.esquerda:
-                matriz[linha + 1][col - espaco] = '/'
-                preencher(no.esquerda, linha + 2, col - espaco * 2, matriz, espaco // 2)
-            if no.direita:
-                matriz[linha + 1][col + espaco] = '\\'
-                preencher(no.direita, linha + 2, col + espaco * 2, matriz, espaco // 2)
-
-        alt = altura(self.raiz)
-        linhas = alt * 2 - 1
-        colunas = 2 ** (alt + 1)
-        matriz = [[" " for _ in range(colunas)] for _ in range(linhas)]
-
-        preencher(self.raiz, 0, colunas // 2, matriz, colunas // 8)
-
-        print("\n" + "-" * 40)
-        print(" Estrutura da árvore com ramos:")
-        print("-" * 40)
-        for linha in matriz:
-            print("".join(linha).rstrip())
-        print("-" * 40 + "\n")
+    def print_arvore(self, no=None, nivel=0):
+        if no is None:
+            no = self.raiz
+        if no.direita:
+            self.print_arvore(no.direita, nivel + 1)
+        print("    " * nivel + f"-> {no.valor}")
+        if no.esquerda:
+            self.print_arvore(no.esquerda, nivel + 1)
 
 def main():
     print("\n" + "="*40)
-    print(" ARVORE BINARIA DE BUSCA (nossa BST)")
+    print(" ARVORE BINARIA DE BUSCA (BST)")
     print("="*40)
     
     entrada = input(">>> Digite os numeros separados por espaco:\n->  ")
@@ -87,7 +63,11 @@ def main():
         for num in numeros:
             arvore.inserir(num)
 
-        arvore.print_com_ramos()
+        print("\n" + "-"*40)
+        print(" Estrutura da árvore (vista de lado):")
+        print("-"*40)
+        arvore.print_arvore()
+        print("-"*40)
 
         print(f"\n>>> Digite o valor de k (1 ≤ k ≤ {N}):")
         k = int(input("->  "))
