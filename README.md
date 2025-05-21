@@ -7,13 +7,13 @@ Este projeto implementa uma **Árvore Binária de Busca (BST)** capaz de:
 
 ---
 
-## 🎯 Objetivo
+## Objetivo
 
 Este exercício visa praticar a implementação de uma estrutura de dados do tipo **BST (Binary Search Tree)** e aplicar um algoritmo de **percurso in-order** para determinar o elemento que ocupa a `k`-ésima posição na ordem crescente da árvore.
 
 ---
 
-## 👨‍💻 Como funciona?
+## Como funciona?
 
 1. O usuário insere uma lista de números inteiros.
 2. Os números são inseridos em uma Árvore Binária de Busca.
@@ -23,7 +23,7 @@ Este exercício visa praticar a implementação de uma estrutura de dados do tip
 
 ---
 
-## 🧠 O que é o "k-ésimo menor"?
+## O que é o "k-ésimo menor"?
 
 É o número que estaria na posição `k` se todos os elementos fossem ordenados em ordem crescente.
 
